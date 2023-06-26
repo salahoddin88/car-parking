@@ -72,7 +72,7 @@ class ParkingViewSet(viewsets.ModelViewSet):
                 }
 
         cd = timezone.now()
-        available_parkings = Parking.objects.annotate(
+        available_parkings = Parking.objects.prefetch_related('parking_reservation').annotate(
             reserved_count=Count(
                 'parking_reservation',
                 filter=Q(
