@@ -1,7 +1,6 @@
 from django.test import TestCase
 from django.contrib.auth import get_user_model
 from rest_framework.test import APIClient
-from rest_framework import status
 from parking.models import Parking
 
 PARKING_ENDPOINT = '/api/tickets/'
@@ -10,11 +9,11 @@ PARKING_ENDPOINT = '/api/tickets/'
 def create_parking(**params):
     """ Create and return a sample parking """
     defaults = {
-        'name' : 'Test Parking',
-        'address' : 'Test Parking',
-        'latitude' : '36.108920',
-        'longitude' : '-81.899730',
-        'capacity' : 30,
+        'name': 'Test Parking',
+        'address': 'Test Parking',
+        'latitude': '36.108920',
+        'longitude': '-81.899730',
+        'capacity': 30,
     }
     defaults.update(params)
     return Parking.objects.create(**defaults)
@@ -47,7 +46,10 @@ class ParkingApiTest(TestCase):
     """ NOTE: Uncomment the following code to test authenticated user  """
     def setUp(self):
         self.client = APIClient()
-        # self.user = create_user(email='admin@example.com', password='testpass')
+        # self.user = create_user(
+        #   email='admin@example.com',
+        #   password='testpass'
+        # )
         # self.client.force_authenticate(user=self.user)
 
     # def test_unauthorized_user(self):
@@ -60,4 +62,7 @@ class ParkingApiTest(TestCase):
     #     """ Test unauthenticated request """
     #     self.client.logout()
     #     response = self.client.get(PARKING_ENDPOINT)
-    #     self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
+        # self.assertEqual(
+        #     response.status_code,
+        #     status.HTTP_401_UNAUTHORIZED
+        # )

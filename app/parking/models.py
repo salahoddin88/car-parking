@@ -1,6 +1,5 @@
 from django.db import models
 from django.contrib.auth import get_user_model
-from django.utils import timezone
 from datetime import timedelta
 
 
@@ -48,6 +47,6 @@ class Reservation(models.Model):
         return f"{self.parking.name} - {self.user}"
 
     def save(self, *args, **kwargs):
-        self.reservation_end_date_time = self.reservation_date_time + timedelta(hours=self.reservation_hours)
+        self.reservation_end_date_time = self.reservation_date_time \
+            + timedelta(hours=self.reservation_hours)
         super().save(*args, **kwargs)
-

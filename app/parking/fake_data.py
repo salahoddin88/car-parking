@@ -21,4 +21,5 @@ def generate_random_parking_data():
         Parking.objects.create(**parking)
     return True
 
+
 generate_random_parking_data()

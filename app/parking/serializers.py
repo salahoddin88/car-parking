@@ -5,6 +5,7 @@ from . models import Parking
 class ParkingSerializer(serializers.ModelSerializer):
     """ Parking Model Serializer """
     reserved_count = serializers.CharField()
+
     class Meta:
         model = Parking
         fields = (
