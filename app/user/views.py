@@ -7,6 +7,7 @@ from rest_framework import (
     response,
     status,
 )
+from . serializers import SignupSerializer
 
 
 class LoginAPIView(ObtainAuthToken):
@@ -22,3 +23,19 @@ class LogoutAPIView(views.APIView):
     def get(self, request):
         request.user.auth_token.delete()
         return response.Response(status=status.HTTP_200_OK)
+
+
+class SignupAPIView(views.APIView):
+    serializer_class = SignupSerializer
+
+    def post(self, request):
+        serilaizer = self.serializer_class(data=request.data)
+        if serilaizer.is_valid():
+            serilaizer.save()
+            return response.Response(
+                serilaizer.data,
+            )
+        return response.Response(
+            serilaizer.errors,
+            status=status.HTTP_400_BAD_REQUEST
+        )
