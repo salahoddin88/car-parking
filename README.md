@@ -24,4 +24,4 @@ The Nearest Car Parking Finder is a web application developed in Python using Dj
 ## Future Enhancements
 This project can be further improved by adding features like:
 - User registration and authentication for a personalized experience.
-- Reserve parking sport
+- Reserve parking spot
