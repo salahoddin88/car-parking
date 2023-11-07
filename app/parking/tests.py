@@ -46,23 +46,23 @@ class ParkingApiTest(TestCase):
     """ NOTE: Uncomment the following code to test authenticated user  """
     def setUp(self):
         self.client = APIClient()
-        # self.user = create_user(
-        #   email='admin@example.com',
-        #   password='testpass'
-        # )
-        # self.client.force_authenticate(user=self.user)
+        self.user = create_user(
+          email='admin@example.com',
+          password='testpass'
+        )
+        self.client.force_authenticate(user=self.user)
 
-    # def test_unauthorized_user(self):
-    #     """ Test unauthenticated request """
-    #     self.client.logout()
-    #     response = self.client.get(PARKING_ENDPOINT)
-    #     self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
+    def test_unauthorized_user(self):
+        """ Test unauthenticated request """
+        self.client.logout()
+        response = self.client.get(PARKING_ENDPOINT)
+        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
 
-    # def test_auth_required(self):
-    #     """ Test unauthenticated request """
-    #     self.client.logout()
-    #     response = self.client.get(PARKING_ENDPOINT)
-        # self.assertEqual(
-        #     response.status_code,
-        #     status.HTTP_401_UNAUTHORIZED
-        # )
+    def test_auth_required(self):
+        """ Test unauthenticated request """
+        self.client.logout()
+        response = self.client.get(PARKING_ENDPOINT)
+        self.assertEqual(
+            response.status_code,
+            status.HTTP_401_UNAUTHORIZED
+        )
